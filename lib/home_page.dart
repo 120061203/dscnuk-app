@@ -3,6 +3,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 
 import 'data.dart';
 import 'constants.dart';
+import 'detail_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -30,84 +31,112 @@ class _HomePageState extends State<HomePage> {
               ),
               Container(
                 height: 500.0,
+                padding: EdgeInsets.only(left: 32.0),
                 child: Swiper(
                   itemCount: techList.length,
                   itemWidth: MediaQuery.of(context).size.width - 2 * 64,
                   layout: SwiperLayout.STACK,
-                  pagination: SwiperPagination(
-                    builder: DotSwiperPaginationBuilder(),
-                  ),
                   itemBuilder: (context, index) {
-                    return Stack(
-                      children: [
-                        Column(
-                          children: [
-                            SizedBox(
-                              height: 130.0,
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, a, b) => DetailPage(
+                              techInfo: techList[index],
                             ),
-                            Card(
-                              elevation: 8.0,
-                              color: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(32),
+                          ),
+                        );
+                      },
+                      child: Stack(
+                        children: [
+                          Column(
+                            children: [
+                              SizedBox(
+                                height: 130.0,
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(32.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 85.0,
-                                    ),
-                                    Text(
-                                      techList[index].name,
-                                      style: TextStyle(
-                                        fontFamily: 'GoogleSans',
-                                        fontSize: 35.0,
-                                        color: Colors.cyan,
-                                        fontWeight: FontWeight.w800,
+                              Card(
+                                elevation: 8.0,
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(32),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(32.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 95.0,
                                       ),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    Text(
-                                      techList[index].text,
-                                      style: TextStyle(
-                                        fontFamily: 'NotoSans',
-                                        fontSize: 20.0,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500,
+                                      Text(
+                                        techList[index].name,
+                                        style: TextStyle(
+                                          fontFamily: 'GoogleSans',
+                                          fontSize: 30.0,
+                                          color: Colors.cyan,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                        textAlign: TextAlign.left,
                                       ),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    SizedBox(
-                                      height: 32.0,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          '詳細資訊',
-                                          style: TextStyle(
-                                            fontFamily: 'NotoSans',
-                                            fontSize: 18.0,
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.w500,
+                                      Text(
+                                        techList[index].text,
+                                        style: TextStyle(
+                                          fontFamily: 'NotoSans',
+                                          fontSize: 20.0,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                      SizedBox(
+                                        height: 32.0,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '詳細資訊',
+                                            style: TextStyle(
+                                              fontFamily: 'NotoSans',
+                                              fontSize: 18.0,
+                                              color: Colors.grey,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                            textAlign: TextAlign.left,
                                           ),
-                                          textAlign: TextAlign.left,
-                                        ),
-                                        Icon(
-                                          Icons.arrow_forward,
-                                          color: Colors.grey,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                          Icon(
+                                            Icons.arrow_forward,
+                                            color: Colors.grey,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
+                            ],
+                          ),
+                          Positioned(
+                            bottom: 40.0,
+                            right: 16.0,
+                            child: Text(
+                              (index + 1).toString(),
+                              style: TextStyle(
+                                fontFamily: 'GoogleSans',
+                                fontSize: 247,
+                                color: primaryTextColor.withOpacity(0.08),
+                                fontWeight: FontWeight.w900,
+                              ),
+                              textAlign: TextAlign.left,
                             ),
-                          ],
-                        ),
-                        Image.asset(techList[index].iconImage),
-                      ],
+                          ),
+                          Hero(
+                            tag: techList[index].position,
+                            child: Image.asset(techList[index].iconImage),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),
@@ -122,21 +151,27 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(36.0),
           ),
-          color: Colors.black12,
+          color: Colors.cyan[700],
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
-              icon: Icon(Icons.home),
+              icon: Image.asset('images/home.png'),
               onPressed: () {},
             ),
-            IconButton(
-              icon: Icon(Icons.calendar_today),
-              onPressed: () {},
+            SizedBox(
+              width: 4.0,
             ),
             IconButton(
-              icon: Icon(Icons.account_circle),
+              icon: Image.asset('images/calendar.png'),
+              onPressed: () {},
+            ),
+            SizedBox(
+              width: 4.0,
+            ),
+            IconButton(
+              icon: Image.asset('images/user.png'),
               onPressed: () {},
             ),
           ],
