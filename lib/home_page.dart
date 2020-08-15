@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(36.0),
           ),
-          color: Colors.cyan[700],
+          color: Colors.white,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

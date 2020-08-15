@@ -13,56 +13,59 @@ class DetailPage extends StatelessWidget {
         child: Stack(
           children: [
             SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(32.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 300.0,
-                        ),
-                        Text(
-                          techInfo.name,
-                          style: TextStyle(
-                            fontFamily: 'GoogleSans',
-                            fontSize: 56,
-                            color: Colors.cyan,
-                            fontWeight: FontWeight.w900,
+              child: Container(
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 300.0,
                           ),
-                          textAlign: TextAlign.left,
-                        ),
-                        Text(
-                          techInfo.text,
-                          style: TextStyle(
-                            fontFamily: 'NotoSans',
-                            fontSize: 31,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w300,
+                          Text(
+                            techInfo.name,
+                            style: TextStyle(
+                              fontFamily: 'GoogleSans',
+                              fontSize: 56,
+                              color: Colors.cyan,
+                              fontWeight: FontWeight.w900,
+                            ),
+                            textAlign: TextAlign.left,
                           ),
-                          textAlign: TextAlign.left,
-                        ),
-                        SizedBox(height: 16.0),
-                        Divider(color: Colors.black38),
-                        SizedBox(height: 32.0),
-                        Text(
-                          techInfo.description ?? '',
-                          maxLines: 25,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontFamily: 'NotoSans',
-                            fontSize: 20,
-                            color: contentTextColor,
-                            fontWeight: FontWeight.w500,
+                          Text(
+                            techInfo.text,
+                            style: TextStyle(
+                              fontFamily: 'NotoSans',
+                              fontSize: 31,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w300,
+                            ),
+                            textAlign: TextAlign.left,
                           ),
-                        ),
-                        SizedBox(height: 32.0),
-                        Divider(color: Colors.black38),
-                      ],
+                          SizedBox(height: 16.0),
+                          Divider(color: Colors.black38),
+                          SizedBox(height: 32.0),
+                          Text(
+                            techInfo.description ?? '',
+                            maxLines: 25,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontFamily: 'NotoSans',
+                              fontSize: 20,
+                              color: contentTextColor,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(height: 32.0),
+                          Divider(color: Colors.black38),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Positioned(
