@@ -4,6 +4,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'data.dart';
 import 'constants.dart';
 import 'detail_page.dart';
+import 'router.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -156,23 +157,52 @@ class _HomePageState extends State<HomePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconButton(
-              icon: Image.asset('images/home.png'),
-              onPressed: () {},
+            InkWell(
+              onTap: () {},
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.home,
+                    color: Colors.cyan,
+                    size: 34.0,
+                  ),
+                  SizedBox(
+                    width: 8.0,
+                  ),
+                  Text(
+                    'Home',
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      color: Colors.cyan,
+                      fontFamily: 'GoogleSans',
+                    ),
+                  ),
+                ],
+              ),
             ),
-            SizedBox(
-              width: 4.0,
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  createCourseRoute(),
+                );
+              },
+              child: Icon(
+                Icons.calendar_today,
+                color: Colors.cyan,
+                size: 28.0,
+              ),
             ),
-            IconButton(
-              icon: Image.asset('images/calendar.png'),
-              onPressed: () {},
-            ),
-            SizedBox(
-              width: 4.0,
-            ),
-            IconButton(
-              icon: Image.asset('images/user.png'),
-              onPressed: () {},
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  createProfileRoute(),
+                );
+              },
+              child: Icon(
+                Icons.account_circle,
+                color: Colors.cyan,
+                size: 32.0,
+              ),
             ),
           ],
         ),
